@@ -1,0 +1,2 @@
+Stored procedure:
+sp_GetSalesDetails
