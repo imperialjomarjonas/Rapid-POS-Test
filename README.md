@@ -1,4 +1,4 @@
-# Rapid-POS-Test
+# Rapid-POS-Test: JOMAR JONAS IMPERIAL - Jobstreet
 Contains my output for the Rapid POS take Home Exam
 
 Here are my deliverables:
