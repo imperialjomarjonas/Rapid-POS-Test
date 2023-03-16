@@ -9,6 +9,6 @@ Trigger.txt = Name of the trigger created
 
 Stored Procedure.txt = Name of the stored procedure created
 
-RapidPOSTest.7z = archived visual studio solution for the code
+RapidPOSTest.7z = archived visual studio solution for the code (Form1.cs - contains my .exe code)
 
 test.txt = Result file
