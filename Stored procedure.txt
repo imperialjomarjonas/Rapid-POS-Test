@@ -1,2 +1,23 @@
 Stored procedure:
 sp_GetSalesDetails
+
+CREATE PROCEDURE [dbo].[sp_GetSalesDetails]
+    @START_DATE DATE,
+    @END_DATE DATE
+AS
+BEGIN
+    SELECT 
+        TH.STR_ID,
+        CAST(TH.BUS_DAT AS DATE) AS SALE_DATE,
+        SUM(TL.QTY_SOLD) AS QUANTITY_SOLD,
+        SUM(TL.EXT_COST) AS COST,
+        AVG(TL.REG_PRC) AS REGULAR_PRICE,
+        SUM(TH.TOT) AS SALES
+    FROM 
+        PS_TKT_HIST TH 
+        JOIN PS_TKT_HIST_LIN TL ON TH.TKT_NO = TL.TKT_NO
+    WHERE 
+        TH.BUS_DAT BETWEEN @START_DATE AND @END_DATE
+    GROUP BY 
+        TH.STR_ID, CAST(TH.BUS_DAT AS DATE)
+END

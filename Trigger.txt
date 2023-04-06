@@ -1,2 +1,22 @@
 Trigger:
 TR_Ar_Cust_ModifiedExistingEntry
+
+CREATE TRIGGER TR_Ar_Cust_ModifiedExistingEntry on AR_CUST   
+AFTER UPDATE  
+AS  
+BEGIN   
+SET NOCOUNT ON;   
+	DECLARE @CUST_NO varchar(15)   
+	DECLARE @Action varchar(15)   
+	DECLARE @Note_id varchar(20)     
+
+SELECT @CUST_NO = INSERTED.CUST_NO   FROM INSERTED    
+--Can do an If Else to each row so we can customize each note txt to say what specific row was modified   
+
+	SET @Action = 'updated entry'    
+	SET @Note_id = 'AUTO' + convert(varchar(25), getdate(), 121)  
+	--to make Note_id unique I add datetime string with milliseconds yyyy-mm-dd hh:mm:ss.mmm
+        
+INSERT INTO AR_CUST_NOTE (CUST_NO , NOTE_ID, NOTE_TXT)   
+VALUES (@CUST_NO, @Note_id ,@Action)  
+END    
